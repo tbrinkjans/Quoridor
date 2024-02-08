@@ -5,3 +5,8 @@
 # NetBeans
 /Application/nbproject/private/
 /Application/build/
+
+#IntelliJ
+/out/
+Quoridor.iml
+.idea/
