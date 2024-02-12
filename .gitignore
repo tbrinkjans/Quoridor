@@ -6,7 +6,5 @@
 /Application/nbproject/private/
 /Application/build/
 
-#IntelliJ
+# IntelliJ
 /out/
-Quoridor.iml
-.idea/
