@@ -18,8 +18,16 @@ public class BoardComponent extends JComponent {
 
     private final Board board;
 
+    private boolean debug;
+
     public BoardComponent(Board board) {
         this.board = board;
+        debug = false;
+    }
+
+    public void toggleDebug() {
+        debug = !debug;
+        paintComponent(getGraphics());
     }
 
     @Override
@@ -107,6 +115,27 @@ public class BoardComponent extends JComponent {
                 int xBoard = (int) ((fieldSize + wallSize) * x);
                 int yBoard = (int) ((fieldSize + wallSize) * (8 - y));
                 g2D.fillRoundRect(xBoard, yBoard, (int) fieldSize, (int) fieldSize, fieldArc, fieldArc);
+            }
+        }
+
+        if (debug) {
+            g2D.setStroke(new BasicStroke((float) (fieldSize * 0.025)));
+            g2D.setColor(new Color(196, 41, 20));
+
+            Field[][] fields = board.getFields();
+            for (int x = 0; x < 9; x++) {
+                for (int y = 0; y < 9; y++) {
+                    Field field = fields[x][y];
+                    int x1Board = (int) ((fieldSize + wallSize) * x + (fieldSize / 2));
+                    int y1Board = (int) ((fieldSize + wallSize) * (8 - y) + (fieldSize / 2));
+
+                    for (Field neighbor : field.getNeighbors()) {
+                        int x2Board = (int) ((fieldSize + wallSize) * neighbor.getPosition().x + (fieldSize / 2));
+                        int y2Board = (int) ((fieldSize + wallSize) * (8 - neighbor.getPosition().y) + (fieldSize / 2));
+
+                        g2D.drawLine(x1Board, y1Board, x2Board, y2Board);
+                    }
+                }
             }
         }
     }
