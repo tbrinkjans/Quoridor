@@ -2,6 +2,7 @@ package application.gui;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GraphicsDevice;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -43,10 +44,23 @@ public class GameGUI extends JFrame {
         getContentPane().add(boardComponent);
     }
 
+    private void toggleFullScreen() {
+        dispose();
+        setUndecorated(!isUndecorated());
+
+        GraphicsDevice device = getGraphicsConfiguration().getDevice();
+        device.setFullScreenWindow(isUndecorated() ? this : null);
+
+        setVisible(true);
+    }
+
     private class GameKeyListener extends KeyAdapter {
 
         @Override
         public void keyPressed(KeyEvent evt) {
+            if (evt.getKeyCode() == KeyEvent.VK_F11)
+                toggleFullScreen();
+
             if (evt.getKeyCode() == KeyEvent.VK_F12)
                 boardComponent.toggleDebug();
         }
