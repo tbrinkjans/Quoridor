@@ -2,7 +2,7 @@ package application.util;
 
 import java.awt.Point;
 
-public class PointHelper {
+public class PointUtils {
 
     public static boolean areAdjacent(Point a, Point b) {
         int diffX = Math.abs(a.x - b.x);

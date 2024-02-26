@@ -4,7 +4,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
-import application.util.PointHelper;
+import application.util.PointUtils;
 
 public class Field {
 
@@ -13,12 +13,12 @@ public class Field {
 
     public Field(Point position) {
         this.position = position;
-        this.neighbors = new ArrayList<>();
+        neighbors = new ArrayList<>();
     }
 
     public void addNeighbor(Field field) {
         if (neighbors.contains(field) || neighbors.size() == 4) return;
-        if (!PointHelper.areAdjacent(position, field.getPosition())) return;
+        if (!PointUtils.areAdjacent(position, field.getPosition())) return;
         neighbors.add(field);
     }
 
