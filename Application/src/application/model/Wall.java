@@ -1,24 +1,25 @@
 package application.model;
+
 import java.awt.Point;
+
+import application.enumeration.Orientation;
+
 public class Wall {
-private final Point Coordinates;
-private final Orientation Orientation;
 
-private enum Orientation{
-    Horizontal,
-    Vertical
-}
-    public Wall(Point pCoordinates, Orientation pOrientation){
-        Coordinates = pCoordinates;
-        Orientation = pOrientation;
+    private final Point position;
+    private final Orientation orientation;
+
+    public Wall(Point position, Orientation orientation) {
+        this.position = position;
+        this.orientation = orientation;
     }
 
-    public Point getCoordinates(){
-        return Coordinates;
+    public Point getPosition() {
+        return position;
     }
 
-    public Orientation getOrientation(){
-        return Orientation;
+    public Orientation getOrientation() {
+        return orientation;
     }
 
 }
