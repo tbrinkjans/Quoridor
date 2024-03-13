@@ -10,6 +10,7 @@ public class Field {
 
     private final Point position;
     private final List<Field> neighbors;
+    private Pawn pawn;
 
     public Field(Point position) {
         this.position = position;
@@ -33,6 +34,13 @@ public class Field {
 
     public Point getPosition() {
         return position;
+    }
+
+    public Pawn getPawn(){
+        return pawn;
+    }
+    public void setPawn(Pawn pawn){
+        this.pawn = pawn;
     }
 
 }
