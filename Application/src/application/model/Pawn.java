@@ -1,37 +1,51 @@
 package application.model;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.List;
+
+import application.exception.IllegalMoveException;
 
 public class Pawn {
 
     private final Color color;
-    private Field location;
-    public Pawn(Color color, Field location){
+
+    private Field field;
+
+    public Pawn(Color color, Field field) {
         this.color = color;
-        this.location = location;
+        this.field = field;
     }
 
-    public Color getColor(){
-        return color;
+    public void moveTo(Field destination) {
+        if (!isValidMove(destination)) {
+            throw new IllegalMoveException(this, destination);
+        } else {
+            field.setOccupier(null);
+            destination.setOccupier(this);
+            field = destination;
+        }
     }
 
-    public boolean isValidMove(Field destination){
-
+    public boolean isValidMove(Field destination) {
         return getValidMoves().contains(destination);
     }
 
-    public List<Field> getValidMoves(){
-
-        return location.getNeighbors().stream().filter(field -> field.getPawn() == null).toList();
+    public boolean hasValidMove() {
+        return !getValidMoves().isEmpty();
     }
 
-    public void moveTo(Field destination){
-        if(isValidMove(destination)){
-            location.setPawn(null);
-            destination.setPawn(this);
-            location = destination;
-        }
+    public List<Field> getValidMoves() {
+        return field.getNeighbors().stream()
+            .filter(neighbor -> !neighbor.isOccupied())
+            .toList();
+    }
+
+    public Field getField() {
+        return field;
+    }
+
+    public Color getColor() {
+        return color;
     }
 
 }

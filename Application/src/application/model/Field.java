@@ -10,11 +10,24 @@ public class Field {
 
     private final Point position;
     private final List<Field> neighbors;
-    private Pawn pawn;
+
+    private Pawn occupier;
 
     public Field(Point position) {
         this.position = position;
         neighbors = new ArrayList<>();
+    }
+
+    public void setOccupier(Pawn occupier) {
+        this.occupier = occupier;
+    }
+
+    public boolean isOccupied() {
+        return occupier != null;
+    }
+
+    public Pawn getOccupier() {
+        return occupier;
     }
 
     public void addNeighbor(Field field) {
@@ -34,13 +47,6 @@ public class Field {
 
     public Point getPosition() {
         return position;
-    }
-
-    public Pawn getPawn(){
-        return pawn;
-    }
-    public void setPawn(Pawn pawn){
-        this.pawn = pawn;
     }
 
 }
