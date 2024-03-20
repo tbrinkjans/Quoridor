@@ -6,12 +6,12 @@ import java.awt.GraphicsDevice;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import application.Application;
 import application.component.BoardComponent;
 import application.model.Board;
+import application.util.ImageLoader;
 
 public class GameGUI extends JFrame {
 
@@ -33,7 +33,7 @@ public class GameGUI extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        setIconImage(new ImageIcon("res\\icon.png").getImage());
+        setIconImage(ImageLoader.getImage("icon.png"));
         getContentPane().setBackground(new Color(245, 243, 232));
 
         addKeyListener(new GameKeyListener());
