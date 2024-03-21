@@ -27,7 +27,7 @@ public class BoardComponent extends JComponent {
 
     public void toggleDebug() {
         debug = !debug;
-        paintComponent(getGraphics());
+        repaint();
     }
 
     @Override

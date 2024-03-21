@@ -2,6 +2,7 @@ package application.model;
 
 import java.awt.Color;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import application.exception.IllegalMoveException;
 
@@ -13,7 +14,9 @@ public class Pawn {
 
     public Pawn(Color color, Field field) {
         this.color = color;
+
         this.field = field;
+        this.field.setOccupier(this);
     }
 
     public void moveTo(Field destination) {
@@ -37,7 +40,7 @@ public class Pawn {
     public List<Field> getValidMoves() {
         return field.getNeighbors().stream()
             .filter(neighbor -> !neighbor.isOccupied())
-            .toList();
+            .collect(Collectors.toList());
     }
 
     public Field getField() {
