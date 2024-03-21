@@ -18,8 +18,8 @@ public class Field {
         neighbors = new ArrayList<>();
     }
 
-    public void setOccupier(Pawn occupier) {
-        this.occupier = occupier;
+    public void setOccupier(Pawn pawn) {
+        occupier = pawn;
     }
 
     public boolean isOccupied() {
